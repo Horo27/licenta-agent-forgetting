@@ -1,0 +1,7 @@
+name: local-dev
+description: Fast local iteration on the Mac through Ollama (small model). Smoke tests (T1).
+# Ollama serves an OpenAI-compatible API at /v1 and ignores the API key.
+memory_llm: &llm {kind: openai_compat, model: "qwen3:8b", base_url: "http://localhost:11434/v1"}
+answer_llm: *llm
+judge_llm: *llm
+embedder: {kind: openai_compat, model: nomic-embed-text, base_url: "http://localhost:11434/v1", dim: 768}

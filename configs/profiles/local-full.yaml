@@ -1,0 +1,6 @@
+name: local-full
+description: Overnight full-benchmark runs on the Mac (T2). Larger local model.
+memory_llm: &llm {kind: openai_compat, model: "qwen3:14b", base_url: "http://localhost:11434/v1"}
+answer_llm: *llm
+judge_llm: *llm
+embedder: {kind: openai_compat, model: nomic-embed-text, base_url: "http://localhost:11434/v1", dim: 768}

@@ -1,0 +1,6 @@
+name: test
+description: Deterministic fakes for unit tests. No network, no models.
+memory_llm: {kind: fake, model: fake-llm}
+answer_llm: {kind: fake, model: fake-llm}
+judge_llm: {kind: fake, model: fake-llm}
+embedder: {kind: fake, model: fake-embedder, dim: 64}

@@ -1,0 +1,7 @@
+name: cloud-vllm
+description: Open model served by vLLM on a rented GPU (T4). Set base_url to the box's address.
+memory_llm: &llm {kind: openai_compat, model: "Qwen/Qwen3-14B", base_url: "http://GPU_HOST:8000/v1", api_key_env: VLLM_API_KEY}
+answer_llm: *llm
+# Keep the judge fixed across systems; the API judge keeps scores comparable with cloud-openai runs.
+judge_llm: {kind: openai_compat, model: gpt-4o-mini, base_url: "https://api.openai.com/v1", api_key_env: OPENAI_API_KEY}
+embedder: {kind: openai_compat, model: text-embedding-3-small, base_url: "https://api.openai.com/v1", api_key_env: OPENAI_API_KEY, dim: 1536}

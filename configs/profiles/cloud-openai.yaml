@@ -1,0 +1,6 @@
+name: cloud-openai
+description: Paper-faithful runs (T3) with the models FadeMem reports. Check model availability before a run.
+memory_llm: &llm {kind: openai_compat, model: gpt-4o-mini, base_url: "https://api.openai.com/v1", api_key_env: OPENAI_API_KEY}
+answer_llm: *llm
+judge_llm: *llm
+embedder: {kind: openai_compat, model: text-embedding-3-small, base_url: "https://api.openai.com/v1", api_key_env: OPENAI_API_KEY, dim: 1536}

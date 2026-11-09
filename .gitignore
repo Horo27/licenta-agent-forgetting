@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Secrets — API keys live in the environment or .env, never in configs
+.env
+.env.*
+
+# Run outputs and caches (large, regenerable)
+results/
+cache/
+data/raw/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

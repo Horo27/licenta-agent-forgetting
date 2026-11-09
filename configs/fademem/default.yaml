@@ -1,0 +1,53 @@
+# FadeMem hyperparameters. (paper) = stated in arXiv 2601.18642v2; (ours) = not stated, our choice.
+# Every (ours) value is logged with its reason in docs/reproduction-notes.md.
+
+pipeline:
+  memory_unit: fact          # (ours) LLM-extracted facts; "turn" stores raw turns (ablation)
+  update_schedule: per_memory  # (ours) literal reading of Eq. 14
+  context_turns: 3           # (ours) turns forming Q_t
+
+importance:                  # Eq. 2
+  w_rel: 0.4                 # (ours) alpha
+  w_freq: 0.3                # (ours) beta in Eq. 2
+  w_recency: 0.3             # (ours) gamma
+  recency_rate: 0.1          # (ours) delta, 1/day
+  access_decay_rate: 0.1     # (ours) kappa, 1/day
+
+layers:                      # Eq. 3
+  theta_promote: 0.7         # (paper)
+  theta_demote: 0.3          # (paper)
+  capacity_lml: 1000         # (paper)
+  capacity_sml: 500          # (paper)
+
+decay:                       # Eq. 4-6
+  lambda_base: 0.1           # (paper)
+  mu: 1.0                    # (ours)
+  shape_lml: 0.8             # (paper) beta, LML
+  shape_sml: 1.2             # (paper) beta, SML
+  initial_strength: 1.0      # (ours) v(0)
+
+reinforcement:               # Eq. 7
+  delta_v: 0.2               # (ours)
+  saturation_n: 5            # (ours) N
+  window_days: 7             # (ours) W
+
+pruning:
+  epsilon: 0.05              # (ours) epsilon_prune
+  max_dormant_days: 30       # (ours) T_max
+
+conflict:                    # Eq. 8-10
+  theta_sim: 0.8             # (ours) candidate threshold; embedder-dependent
+  omega: 0.3                 # (ours)
+  rho: 2.0                   # (ours)
+  age_window_days: 7         # (ours) W_age
+
+fusion:                      # Eq. 11-13
+  theta_fusion: 0.75         # (paper) calibrated for text-embedding-3-small
+  time_window_days: 3        # (ours) T_window
+  min_cluster_size: 3        # (ours)
+  theta_preserve: 0.8        # (ours)
+  variance_bonus: 0.1        # (ours) epsilon in Eq. 12
+
+retrieval:
+  top_k: 10                  # (ours) matches RP@10
+  score: sim_times_strength  # (ours) "sim" is the ablation
